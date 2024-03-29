@@ -14,7 +14,7 @@ public class Tea extends HotBeverage{
     public String toString() {
         return "Чай: {" +
                 "Наименование='" + name + '\'' + ", Цена=" + price +
-                " руб., Объём=" + volume + " " + ", температура=" + temperature + " тип чая=" +
-                type + "}";
+                " руб., Объём=" + volume + " " + " мл., температура=" + temperature + "°С  тип чая='" +
+                type + "\'}";
     }
 }

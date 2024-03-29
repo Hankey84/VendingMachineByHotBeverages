@@ -71,17 +71,17 @@ public class VendingMachineByHotBeverage implements VendingMachine {
         VendingMachineByHotBeverage machine = new VendingMachineByHotBeverage();
 
         // Наполнение ассортимента нашего автомата
-        Tea greenTea = new Tea("Green Tea", 55.0, 400, 90.0, "Green");
+        Tea greenTea = new Tea("Green Tea", 55.0, 400, 90.0, "Maofen");
         Coffee espresso = new Coffee("Espresso", 70.0, 100, 85.5, "Dark Roast");
         Coffee americano = new Coffee("Americano", 110.0, 150, 75.0, "Medium Roast");
         Coffee americanoDouble = new Coffee("Americano", 170.0, 300, 75.0, "Medium Roast");
-        Tea blackTea = new Tea("Black Tea", 60.0, 400, 90.0, "Black");
-        Tea jasmineTea = new Tea("Jasmine Green Tea", 75.0, 400, 90.0, "Jasmine Green");
-        Coffee cappucino = new Coffee("Cappucino", 150.0, 300, 72.0, "Light Roast");
-        Coffee cappucinoXL = new Coffee("Cappucino", 190.0, 400, 72.0, "Light Roast");
+        Tea blackTea = new Tea("Black Tea", 60.0, 400, 90.0, "Orange Pecoe");
+        Tea jasmineTea = new Tea("Jasmine Green Tea", 75.0, 400, 90.0, "Molly Tcha Van");
+        Coffee cappucino = new Coffee("Cappucino", 150.0, 300, 72.0, "Dark Roast");
+        Coffee cappucinoXL = new Coffee("Cappucino", 190.0, 400, 72.0, "Medium Roast");
         Coffee cappucinoXXL = new Coffee("Cappucino", 230.0, 500, 72.0, "Light Roast");
-        Coffee latte = new Coffee("Latte", 170.0, 300, 72.0, "Light Roast");
-        Coffee latteXl = new Coffee("Latte", 210.0, 400, 72.0, "Light Roast");
+        Coffee latte = new Coffee("Latte", 170.0, 300, 72.0, "Dark Roast");
+        Coffee latteXl = new Coffee("Latte", 210.0, 400, 72.0, "Medium Roast");
         Coffee latteXXL = new Coffee("Latte", 250.0, 500, 72.0, "Light Roast");
 
         machine.addBeverage(greenTea);
@@ -110,7 +110,7 @@ public class VendingMachineByHotBeverage implements VendingMachine {
             String productName = scanner.nextLine();
 
             Set<Object> volumeValues = machine.extractFieldValues("volume", productName);
-            System.out.print("Теперь выберите объём вашего напитка из " + volumeValues + ": ");
+            System.out.print("Теперь выберите объём вашего напитка из " + volumeValues + " мл.: ");
             try {
                 int requiredVolume = scanner.nextInt();
                 scanner.nextLine(); // Прочитать оставшийся символ новой строки после nextInt()

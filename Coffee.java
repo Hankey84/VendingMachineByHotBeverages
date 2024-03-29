@@ -14,7 +14,7 @@ public class Coffee extends HotBeverage{
     public String toString() {
         return "Кофе: {" +
                 "Наименование='" + name + '\'' + ", Цена=" + price +
-                " руб., Объём=" + volume + " " + ", температура=" + temperature + " тип прожарки=" +
-                roastType + "}";
+                " руб., Объём=" + volume + " " + " мл., температура=" + temperature + "°С тип прожарки='" +
+                roastType + "\'}";
     }
 }
