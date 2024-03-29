@@ -9,6 +9,8 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Scanner;
+import java.util.Set;
+import java.util.TreeSet;
 
 public class VendingMachineByHotBeverage implements VendingMachine {
 
@@ -41,6 +43,30 @@ public class VendingMachineByHotBeverage implements VendingMachine {
         return null; // Или выбросить исключение, если продукт не найден
     }
 
+    public Set<Object> extractFieldValues(String fieldName, String productName) {
+        Set<Object> fieldValues = new TreeSet<>();
+        for (HotBeverage beverage : beverages) {
+            if (productName.equals(beverage.getName())) {
+                switch (fieldName) {
+                    case "volume":
+                        fieldValues.add(beverage.getVolume());
+                        break;
+                    case "price":
+                        fieldValues.add(beverage.getPrice());
+                        break;
+                    case "temperature":
+                        fieldValues.add(beverage.getTemperature());
+                        break;
+                    default:
+                        // Неизвестное поле
+                        // System.out.println("Неизвестное поле: " + fieldName);
+                        break;
+                }
+            }
+        }
+        return fieldValues;
+    }
+
     public static void main(String[] args) {
         VendingMachineByHotBeverage machine = new VendingMachineByHotBeverage();
 
@@ -71,31 +97,32 @@ public class VendingMachineByHotBeverage implements VendingMachine {
         machine.addBeverage(latteXl);
         machine.addBeverage(latteXXL);
 
-        //Реализация логики автомата
-        HashSet<HotBeverage> set = new HashSet<>(beverages);
+        // Реализация логики автомата
+        HashSet<HotBeverage> beverageSet = new HashSet<>(beverages);
         Scanner scanner = new Scanner(System.in);
         boolean continueShopping = true;
         while (continueShopping) {
             System.out.println("Выберите напиток из списка:");
-            for (HotBeverage beverage : set) {
+            for (HotBeverage beverage : beverageSet) {
                 System.out.println(beverage.getName());
             }
             System.out.print("Введите название напитка: ");
             String productName = scanner.nextLine();
 
-            System.out.print("Теперь выберите объём вашего напитка: ");
+            Set<Object> volumeValues = machine.extractFieldValues("volume", productName);
+            System.out.print("Теперь выберите объём вашего напитка из " + volumeValues + ": ");
             try {
                 int requiredVolume = scanner.nextInt();
                 scanner.nextLine(); // Прочитать оставшийся символ новой строки после nextInt()
                 Product product = machine.getProduct(productName, requiredVolume);
                 if (product != null) {
                     if (product instanceof HotBeverage) {
-                        System.out.println("Вы выбрали: " + product); 
+                        System.out.println("Вы выбрали: " + product);
                     }
                 } else {
                     System.out.println("Такого напитка в автомате сейчас нет...");
-                }              
-            } catch (NumberFormatException e) {                
+                }
+            } catch (NumberFormatException e) {
                 System.err.println("Ошибка: введенное значение не является целым числом.");
             }
 
@@ -104,7 +131,7 @@ public class VendingMachineByHotBeverage implements VendingMachine {
             continueShopping = choice.equalsIgnoreCase("y");
         }
 
-        scanner.close();        
+        scanner.close();
     }
 
 }
